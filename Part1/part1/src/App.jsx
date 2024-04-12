@@ -1,6 +1,7 @@
 import Header from "./Components/Header";
 import Contents from "./Components/Contents";
 import Total from "./Components/Total";
+// import { Counter, Test } from "./Components/Contents";
 
 const App = () => {
   const course = {
@@ -25,6 +26,8 @@ const App = () => {
       <Header course={course.name}></Header>
       <Contents parts={course.parts}></Contents>
       <Total parts={course.parts}></Total>
+      {/* <Counter/>
+      <Test/> */}
     </div>
   )
 }
