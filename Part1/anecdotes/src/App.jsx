@@ -43,8 +43,6 @@ function App() {
     const newSelected = selected < Object.keys(anecdotes).length - 1 ? selected + 1 : 0;
     setSelected(newSelected);
   };
-
-  const what = Object.keys(anecdotes);
   
 
   const updateVote = () => {
@@ -56,17 +54,35 @@ function App() {
       }
     };
     setVote(updatedVote);
+  
   };
+
+  // const updateVote = () => {
+  //   const updatedVote = { ...vote };
+  //   updatedVote[selected].rating += 1;
+  //   setVote(updatedVote);
+  // };
 
   const { anecdote, rating } = vote[selected];
 
+  const maxVoteAnecdote = Object.values(vote).reduce((maxAnecdote, currentAnecdote) =>
+    currentAnecdote.rating > maxAnecdote.rating ? currentAnecdote : maxAnecdote
+  );
+
+
   return (
     <>
+      <h3>Anecdotes of the day</h3>
       <div>{anecdote}</div>
       <div>has {rating} votes </div>
 
       <button onClick={updateVote}>Vote</button>
       <button onClick={updateSelected}>Next</button>
+
+      <h3>Anecdote with the highest votes</h3>
+      <div>Anecdote with the most votes: {maxVoteAnecdote.anecdote}</div>
+      <div>Number of votes: {maxVoteAnecdote.rating}</div>
+
     </>
   );
 }
